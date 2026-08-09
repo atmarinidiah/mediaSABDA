@@ -432,12 +432,19 @@ window.addEventListener("load", function(){
         bgMusic.muted=true;
     }
 
-    function startMusic(){
-        bgMusic.play().catch(()=>{});
-        document.removeEventListener("click", startMusic);
-    }
+ function startMusic(){
+    bgMusic.play()
+        .then(() => {
+            console.log("MUSIK BERHASIL DIPUTAR");
+        })
+        .catch(error => {
+            console.error("MUSIK GAGAL:", error);
+        });
 
-    document.addEventListener("click", startMusic);
+    document.removeEventListener("pointerdown", startMusic, true);
+}
+
+document.addEventListener("pointerdown", startMusic, true);
 
 });
 </script>
