@@ -37,7 +37,7 @@
       aid: '',
       cid: '2ad4de62-e300-4776-9092-f0a3f47b66ab',
       playerVersion: '3.20.30234.0',
-      publishTimestamp: '2026-08-09T13:32:25.6430139Z',
+      publishTimestamp: '2026-08-10T12:59:26.1878677Z',
       maxIosVideoElements: 10,
       connectionSettings: { },
 
@@ -419,7 +419,7 @@
 
   <link rel="stylesheet" href="html5/data/css/output.min.css" data-noprefix/>
   
-  <audio id="bgMusic" loop>
+ <audio id="bgMusic" loop>
     <source src="bgmusic.mp3" type="audio/mpeg">
 </audio>
 
@@ -432,19 +432,12 @@ window.addEventListener("load", function(){
         bgMusic.muted=true;
     }
 
- function startMusic(){
-    bgMusic.play()
-        .then(() => {
-            console.log("MUSIK BERHASIL DIPUTAR");
-        })
-        .catch(error => {
-            console.error("MUSIK GAGAL:", error);
-        });
+    function startMusic(){
+        bgMusic.play().catch(()=>{});
+        document.removeEventListener("click", startMusic);
+    }
 
-    document.removeEventListener("pointerdown", startMusic, true);
-}
-
-document.addEventListener("pointerdown", startMusic, true);
+    document.addEventListener("click", startMusic);
 
 });
 </script>
